@@ -13,12 +13,6 @@ declare global {
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
-if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local",
-  );
-}
-
 let cached: MongooseGlobal;
 
 if (typeof global.mongooseGlobal === "undefined") {
@@ -40,6 +34,12 @@ export async function connectToDatabase(): Promise<Connection> {
   }
   if (!cached.promise) {
     // Create a new connection promise if not already connecting
+    if (!MONGODB_URI) {
+      throw new Error(
+        "Please define the MONGODB_URI environment variable inside .env.local",
+      );
+    }
+
     cached.promise = mongoose
       .connect(MONGODB_URI, {
         bufferCommands: false,
