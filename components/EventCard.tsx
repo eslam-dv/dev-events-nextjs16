@@ -1,7 +1,7 @@
+import { EventItem } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 
-import { type EventItem } from "@/lib/constants";
 
 const EventCard = ({ title, image, slug, location, date, time }: EventItem) => {
   return (

@@ -27,7 +27,7 @@ if (typeof global.mongooseGlobal === "undefined") {
  * multiple connections during development (hot reloads).
  * @returns {Promise<Connection>} The established Mongoose connection
  */
-export async function connectToDatabase(): Promise<Connection> {
+export async function connectDB(): Promise<Connection> {
   if (cached.conn) {
     // Return cached connection if already established
     return cached.conn;
